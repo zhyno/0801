@@ -27,3 +27,4 @@ artifacts: #定义构建输出阶段要上传到S3的产物，通常是已编译
   files:
     - dist/shop/*
     - dist/shop/assets/*
+    - appspec.yaml
