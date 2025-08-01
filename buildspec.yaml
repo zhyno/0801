@@ -1,0 +1,29 @@
+version: 0.2
+
+phases: #构建的各阶段及其所需的命令
+  install: #构建前准备工作，通常是安装依赖或指定运行环境版本。
+    runtime-versions: #定义各组件的版本（依据所选镜像支持范围）
+      nodejs: 16
+    commands:
+      - echo Installing dependencies...
+      - npm install
+  
+  pre_build: #编译前需执行的命令
+    commands:
+      - echo Nothing to do...
+      - ls -l
+
+  build: #执行核心构建操作的指令
+    commands:
+      - echo Build started on `date`
+      - npm run build
+  
+  post_build: #构建完成后执行的命令，如上传日志或发通知
+    commands:
+      - ls -l
+      - echo Build completed on `date`
+
+artifacts: #定义构建输出阶段要上传到S3的产物，通常是已编译完成的程序包或打包文件
+  files:
+    - dist/shop/*
+    - dist/shop/assets/*
